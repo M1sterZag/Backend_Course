@@ -29,9 +29,13 @@
 				<li class="nav-item">
 					<span class="navbar-text"> Hello, {{ user.username }}.</span>
 				</li>
-				<li class="nav-item">
+				{% comment %} <li class="nav-item">
 					<a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
-				</li>
+				</li> {% endcomment %}
+				<form id="logout-form" action="{% url 'users:logout' %}" method="POST">
+					{% csrf_token %}
+					<button class="btn btn-outline-dark" type="submit">Log out</button>
+				</form>
 			{% else %}
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'users:register' %}">Register</a>
