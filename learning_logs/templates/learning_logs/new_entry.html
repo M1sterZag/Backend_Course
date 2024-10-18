@@ -1,10 +1,30 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
-  <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-  <p>Add a new entry:</p>
-  <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
+<div class="mt-5">
+  <h2 class="text-center" style="color: #003366;">
+    <a href="{% url 'learning_logs:topic' topic.id %}" style="color: #003366; text-decoration: none;">{{ topic }}</a>
+  </h2>
+  
+  <div class="text-center mt-4">
+    <h4 style="color: #003366;">Add a New Entry</h4>
+  </div>
+  
+  <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post' class="mt-4">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name='submit'>add entry</button>
+    
+    <div class="form-group">
+      {{ form.text }}  <!-- Теперь поле ввода будет уже стилизовано в forms.py -->
+      {% if form.text.errors %}
+        <div class="text-danger">
+          {{ form.text.errors }}
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Add Entry</button>
+    </div>
   </form>
+</div>
 {% endblock content %}

@@ -1,11 +1,27 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
-
-	<p>Add a new topic:</p>
-	<form action="{% url 'learning_logs:new_topic' %}" method='post'>
-	{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">add topic</button>
-	</form>
-
+<div class="mt-5">
+  <h2 class="text-center" style="color: #003366;">Add a New Topic</h2>
+  
+  <form action="{% url 'learning_logs:new_topic' %}" method='post' class="mx-auto" style="max-width: 400px;">
+    {% csrf_token %}
+    
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}  <!-- Используем просто {{ field }} для вывода поля формы -->
+        {% if field.errors %}
+          <div class="text-danger">
+            {{ field.errors }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Add Topic</button>
+    </div>
+  </form>
+</div>
 {% endblock content %}

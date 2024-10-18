@@ -9,9 +9,45 @@
 	<title>Learning Log</title>
 	{% bootstrap_css %}
 	{% bootstrap_javascript jquery='full' %}
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			background-color: #f8f9fa;
+		}
+		.navbar {
+			background-color: #003366;
+		}
+		.navbar-brand, .nav-link, .navbar-text {
+			color: #ffffff !important;
+		}
+		.btn-outline-dark {
+			color: #ffffff !important;
+			border-color: #ffffff;
+		}
+		.btn-outline-dark:hover {
+			background-color: #ffffff;
+			color: #003366 !important;
+		}
+		.container {
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			padding: 20px;
+			margin-top: 20px;
+		}
+		.navbar-toggler {
+			border-color: #ffffff;
+		}
+		.navbar-toggler-icon {
+			background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+		}
+		.border-bottom {
+			border-color: #003366 !important;
+		}
+	</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+<nav class="navbar navbar-expand-md navbar-dark mb-4 border">
 	<a class="navbar-brand" href="{% url 'learning_logs:index' %}">
 		Learning Log</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -21,17 +57,13 @@
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'learning_logs:topics' %}">
-					Topics</a></li>
+				<a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a></li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			{% if user.is_authenticated %}
 				<li class="nav-item">
-					<span class="navbar-text"> Hello, {{ user.username }}.</span>
+					<span class="navbar-text mr-2">Hello, {{ user.username }}.</span>
 				</li>
-				{% comment %} <li class="nav-item">
-					<a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
-				</li> {% endcomment %}
 				<form id="logout-form" action="{% url 'users:logout' %}" method="POST">
 					{% csrf_token %}
 					<button class="btn btn-outline-dark" type="submit">Log out</button>

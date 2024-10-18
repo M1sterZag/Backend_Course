@@ -1,10 +1,23 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
-	<p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-	<p>Edit entry:</p>
-		<form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">save changes</button>
-	</form>
+<div class="mt-5">
+  <h2 class="text-center" style="color: #003366;">
+    <a href="{% url 'learning_logs:topic' topic.id %}" style="color: #003366; text-decoration: none;">{{ topic }}</a>
+  </h2>
+
+  <div class="text-center mt-4">
+    <h4 style="color: #003366;">Edit Entry</h4>
+  </div>
+
+  <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post' class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.as_p }}
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+  </form>
+</div>
 {% endblock content %}

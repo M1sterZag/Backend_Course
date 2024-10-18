@@ -1,21 +1,24 @@
 {% extends 'learning_logs/base.html' %}
+
 {% block content %}
-  <p>Topic: {{ topic }}</p>
-  <p>Entries:</p>
-  <p>
-    <a href="{% url 'learning_logs:new_entry' topic.id %}">add new entry</a>
-  </p>
-  <ul>
-  {% for entry in entries %}
-    <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
-        <p>
-            <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a>
-        </p>
-    </li>
-  {% empty %}
-    <li>There are no entries for this topic yet ¯\_(ツ)_/¯</li>
-  {% endfor %}
+<div class="mt-5">
+  <h2 class="text-center" style="color: #003366;">{{ topic }}</h2>
+  <div class="text-center mt-3">
+    <a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-primary">Add new entry</a>
+  </div>
+
+  <ul class="list-group mt-4">
+    {% for entry in entries %}
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between">
+          <p class="mb-1 text-muted">{{ entry.date_added|date:'M d, Y H:i' }}</p>
+          <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="btn btn-outline-secondary btn-sm">Edit entry</a>
+        </div>
+        <p class="mb-1" style="color: #003366;">{{ entry.text|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li class="list-group-item text-center">There are no entries for this topic yet ¯\_(ツ)_/¯</li>
+    {% endfor %}
   </ul>
+</div>
 {% endblock content %}
