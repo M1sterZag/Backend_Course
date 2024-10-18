@@ -16,7 +16,7 @@
       
       <div class="form-group text-center">
 		<label for="{{ form.username.id_for_label }}" class="font-weight-bold">Username</label>
-		{{ form.username }} <!-- Поле ввода для имени пользователя с классом Bootstrap, добавленным в forms.py -->
+		{{ form.username }}
 		{% if form.username.errors %}
 		  <div class="text-danger">
 			{{ form.username.errors }}
@@ -26,7 +26,7 @@
 	
 	<div class="form-group text-center">
 		<label for="{{ form.password.id_for_label }}" class="font-weight-bold">Password</label>
-		{{ form.password }} <!-- Поле ввода для пароля с классом Bootstrap, добавленным в forms.py -->
+		{{ form.password }}
 		{% if form.password.errors %}
 		  <div class="text-danger">
 			{{ form.password.errors }}

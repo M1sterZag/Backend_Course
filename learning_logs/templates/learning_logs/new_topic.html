@@ -10,7 +10,7 @@
     {% for field in form %}
       <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}  <!-- Используем просто {{ field }} для вывода поля формы -->
+        {{ field }}
         {% if field.errors %}
           <div class="text-danger">
             {{ field.errors }}

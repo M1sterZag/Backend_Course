@@ -11,8 +11,8 @@ class TopicForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['text'].widget.attrs.update({
-            'class': 'form-control',  # Применяем класс Bootstrap
-            'placeholder': 'Enter topic name'  # Плейсхолдер
+            'class': 'form-control',
+            'placeholder': 'Enter topic name'
         })
 
 
@@ -23,9 +23,9 @@ class EntryForm(forms.ModelForm):
         labels = {'text': ''}
         widgets = {
             'text': forms.Textarea(attrs={
-                'class': 'form-control',  # Применяем класс Bootstrap
-                'rows': 5,  # Высота текстового поля
-                'placeholder': 'Write your entry here...'  # Плейсхолдер
+                'class': 'form-control',
+                'rows': 5,
+                'placeholder': 'Write your entry here...'
             })
         }
 

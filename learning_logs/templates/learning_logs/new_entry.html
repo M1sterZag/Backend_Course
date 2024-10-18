@@ -14,7 +14,7 @@
     {% csrf_token %}
     
     <div class="form-group">
-      {{ form.text }}  <!-- Теперь поле ввода будет уже стилизовано в forms.py -->
+      {{ form.text }}
       {% if form.text.errors %}
         <div class="text-danger">
           {{ form.text.errors }}

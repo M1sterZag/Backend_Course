@@ -17,7 +17,6 @@ class CustomUserCreationForm(UserCreationForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Добавляем placeholder и класс Bootstrap для полей
         self.fields['username'].widget.attrs.update({
             'class': 'form-control', 
             'placeholder': 'Enter your username'
