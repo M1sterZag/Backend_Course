@@ -57,34 +57,27 @@
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a></li>
+				<a class="nav-link" href="{% url 'learning_logs:topics' %}">Темы</a></li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			{% if user.is_authenticated %}
 				<li class="nav-item">
-					<span class="navbar-text mr-2">Hello, {{ user.username }}.</span>
+					<span class="navbar-text mr-2">{{ user.username }}</span>
 				</li>
 				<form id="logout-form" action="{% url 'users:logout' %}" method="POST">
 					{% csrf_token %}
-					<button class="btn btn-outline-dark" type="submit">Log out</button>
+					<button class="btn btn-outline-dark" type="submit">Выход</button>
 				</form>
 			{% else %}
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'users:register' %}">Register</a>
+					<a class="nav-link" href="{% url 'users:register' %}">Регистрация</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'users:login' %}">Log in</a></li>
+					<a class="nav-link" href="{% url 'users:login' %}">Вход</a></li>
 			{% endif %}
 		</ul>
 	</div>
 </nav>
-<main role="main" class="container">
-	<div class="pb-2 mb-2 border-bottom">
-		{% block page_header %}{% endblock page_header %}
-	</div>
-	<div>
-		{% block content %}{% endblock content %}
-	</div>
-</main>
+{% block content %}{% endblock content %}
 </body>
 </html>

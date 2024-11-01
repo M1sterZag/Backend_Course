@@ -7,17 +7,43 @@
   </h2>
 
   <div class="text-center mt-4">
-    <h4 style="color: #003366;">Edit Entry</h4>
+    <h4 style="color: #003366;">Редактирование записи</h4>
   </div>
 
-  <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post' class="mt-4">
-    {% csrf_token %}
-    <div class="form-group">
-      {{ form.as_p }}
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div>
-  </form>
+  <div class="d-flex justify-content-center mt-4">
+    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post" style="width: 100%; max-width: 600px;">
+      {% csrf_token %}
+
+      <div class="form-group">
+        {{ form.text }}
+        {% if form.text.errors %}
+          <div class="text-danger">
+            {{ form.text.errors }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+      </div>
+    </form>
+  </div>
 </div>
+
+<script>
+  const textarea = document.querySelector('textarea');
+  if (textarea) {
+    textarea.style.height = "auto";
+    textarea.style.overflow = "hidden";
+    textarea.style.resize = "none";
+
+    const adjustHeight = () => {
+      textarea.style.height = "auto";
+      textarea.style.height = (textarea.scrollHeight) + "px";
+    };
+
+    textarea.addEventListener('input', adjustHeight);
+    adjustHeight();
+  }
+</script>
 {% endblock content %}

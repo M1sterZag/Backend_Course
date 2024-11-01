@@ -2,36 +2,32 @@
 
 {% block content %}
 <div class="mt-5">
-  <h2 class="text-center" style="color: #003366;">Register</h2>
+  <h2 class="text-center" style="color: #003366;">Регистрация</h2>
   
   <div class="mt-4">
     <form method="post" action="{% url 'users:register' %}" class="mx-auto" style="max-width: 400px;">
       {% csrf_token %}
-      
-    <div class="form-group text-center">
-        <input type="text" name="username" class="form-control" placeholder="Enter your username">
-        {% if form.username.errors %}
-            <div class="text-danger">{{ form.username.errors }}</div>
-        {% endif %}
-    </div>
-    
-    <div class="form-group text-center">
-        <input type="password" name="password1" class="form-control" placeholder="Enter your password">
-        {% if form.password1.errors %}
-            <div class="text-danger">{{ form.password1.errors }}</div>
-        {% endif %}
-    </div>
-    
-    <div class="form-group text-center">
-        <input type="password" name="password2" class="form-control" placeholder="Confirm your password">
-        {% if form.password2.errors %}
-            <div class="text-danger">{{ form.password2.errors }}</div>
-        {% endif %}
-    </div>
-    
 
+      {% if form.errors %}
+      <div class="alert alert-danger text-center" style="border: none; box-shadow: none;">
+        Ошибка. Имя пользователя уже существует или пароли не соавпадают.
+      </div>
+      {% endif %}
+      
+      <div class="form-group text-center">
+        <input type="text" name="username" class="form-control" placeholder="Введите имя пользователя">
+      </div>
+      
+      <div class="form-group text-center">
+        <input type="password" name="password1" class="form-control" placeholder="Введите пароль">
+      </div>
+      
+      <div class="form-group text-center">
+        <input type="password" name="password2" class="form-control" placeholder="Подтвердите пароль">
+      </div>
+      
       <div class="text-center">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
       </div>
       <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
     </form>

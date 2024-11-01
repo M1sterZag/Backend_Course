@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="mt-5">
-  <h2 class="text-center" style="color: #003366;">Add a New Topic</h2>
+  <h2 class="text-center" style="color: #003366;">Добавление новой темы</h2>
   
   <form action="{% url 'learning_logs:new_topic' %}" method='post' class="mx-auto" style="max-width: 400px;">
     {% csrf_token %}
@@ -20,7 +20,7 @@
     {% endfor %}
     
     <div class="text-center">
-      <button type="submit" class="btn btn-primary">Add Topic</button>
+      <button type="submit" class="btn btn-primary">Добавить</button>
     </div>
   </form>
 </div>

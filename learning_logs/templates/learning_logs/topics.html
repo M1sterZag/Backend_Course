@@ -1,19 +1,36 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-<div class="mt-5">
-  <h2 class="text-center" style="color: #003366;">Topics</h2>
-  <ul class="list-group mt-4">
+  <h2 class="text-center" style="color: #003366;">Темы</h2>
+  <div class="text-center mt-4">
+    <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-primary">Добавить новую тему</a>
+  </div>
+  <ul class="list-group list-group-flush mt-4 mx-auto" style="max-width: 600px;">
     {% for topic in topics %}
-        <li class="list-group-item">
-            <a href="{% url 'learning_logs:topic' topic.id %}" style="color: #003366; font-weight: bold;">{{ topic }}</a>
-        </li>
+        <a href="{% url 'learning_logs:topic' topic.id %}" class="text-decoration-none">
+            <li class="list-group-item bg-light rounded shadow-sm mb-2 topic-item border text-center" style="border-color: #003366;">
+                <span style="color: #003366; font-weight: bold;">{{ topic }}</span>
+            </li>
+        </a>
     {% empty %}
-      <li class="list-group-item text-center">No topics ¯\_(ツ)_/¯</li>
+      <li class="list-group-item text-center text-muted bg-light rounded shadow-sm">
+        Нет тем ¯\_(ツ)_/¯
+      </li>
     {% endfor %}
   </ul>
-  <div class="text-center mt-4">
-    <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-primary">Add a new topic</a>
-  </div>
-</div>
+
+<style>
+  .topic-item {
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+  }
+  .topic-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background-color: #e9ecef;
+  }
+  .text-decoration-none {
+      text-decoration: none !important;
+  }
+</style>
 {% endblock content %}

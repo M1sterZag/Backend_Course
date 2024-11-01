@@ -1,43 +1,37 @@
 {% extends "learning_logs/base.html" %}
 
 {% block content %}
-<div class="container mt-5">
-  <h2 class="text-center" style="color: #003366;">Log In</h2>
+<div class="mt-5">
+  <h2 class="text-center" style="color: #003366;">Вход</h2>
   
   <div class="mt-4">
-    {% if form.errors %}
-      <div class="alert alert-danger text-center">
-        Your username and password didn't match. Please try again.
-      </div>
-    {% endif %}
-    
     <form method="post" action="{% url 'users:login' %}" class="mx-auto" style="max-width: 400px;">
       {% csrf_token %}
       
-      <div class="form-group text-center">
-		<label for="{{ form.username.id_for_label }}" class="font-weight-bold">Username</label>
-		{{ form.username }}
-		{% if form.username.errors %}
-		  <div class="text-danger">
-			{{ form.username.errors }}
-		  </div>
-		{% endif %}
-	</div>
-	
-	<div class="form-group text-center">
-		<label for="{{ form.password.id_for_label }}" class="font-weight-bold">Password</label>
-		{{ form.password }}
-		{% if form.password.errors %}
-		  <div class="text-danger">
-			{{ form.password.errors }}
-		  </div>
-		{% endif %}
-	</div>
+      {% if form.errors %}
+        <div class="alert alert-danger text-center" style="border: none; box-shadow: none;">
+          Имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.
+        </div>
+      {% endif %}
       
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      <div class="form-group text-center">
+        <input type="text" name="username" class="form-control" placeholder="Введите имя пользователя">
+        {% if form.username.errors %}
+          <div class="text-danger">{{ form.username.errors }}</div>
+        {% endif %}
       </div>
       
+      <div class="form-group text-center">
+        <input type="password" name="password" class="form-control" placeholder="Введите пароль">
+        {% if form.password.errors %}
+          <div class="text-danger">{{ form.password.errors }}</div>
+        {% endif %}
+      </div>
+      
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Войти</button>
+      </div>
+
       <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
     </form>
   </div>

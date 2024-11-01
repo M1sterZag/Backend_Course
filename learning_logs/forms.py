@@ -12,7 +12,7 @@ class TopicForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['text'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Enter topic name'
+            'placeholder': 'Введите название темы'
         })
 
 
@@ -25,7 +25,7 @@ class EntryForm(forms.ModelForm):
             'text': forms.Textarea(attrs={
                 'class': 'form-control',
                 'rows': 5,
-                'placeholder': 'Write your entry here...'
+                'placeholder': 'Напишите свою запись здесь'
             })
         }
 
